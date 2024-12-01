@@ -22,6 +22,9 @@ public class PhysicsObjectManager : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private Transform spawnPoint; // Ponto inicial de spawn
 
+    [SerializeField] public TrajectoryLine trajectoryLine;
+
+
     private void Start()
     {
         // Inicializa os campos com valores padrão
@@ -35,6 +38,31 @@ public class PhysicsObjectManager : MonoBehaviour
         // Adiciona funcionalidade ao botão
         createButton.onClick.AddListener(CreatePhysicsObject);
     }
+
+    private void Update()
+    {
+        if (trajectoryLine != null && spawnPoint != null)
+        {
+            // Obtém os valores atuais da UI
+            float initialSpeed = float.Parse(initialSpeedInput.text);
+            float mass = float.Parse(massInput.text);
+            float dragCoefficient = float.Parse(dragCoefficientInput.text);
+
+            // Calcula o ângulo do canhão em radianos
+            float angleDegrees = cannonController.GetCannonAngle();
+            float angleRadians = Mathf.Deg2Rad * angleDegrees;
+
+            // Calcula a velocidade inicial em componentes X e Y
+            Vector2 initialVelocity = new Vector2(
+                initialSpeed * Mathf.Cos(angleRadians),
+                initialSpeed * Mathf.Sin(angleRadians)
+            );
+
+            // Atualiza a linha da trajetória
+            trajectoryLine.UpdateTrajectory(spawnPoint.position, initialVelocity, dragCoefficient, mass);
+        }
+    }
+
 
     private void InitializeFields()
     {

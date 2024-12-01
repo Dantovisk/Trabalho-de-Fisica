@@ -19,6 +19,7 @@ public class CannonController : MonoBehaviour
                 RotateCannonTowardsMouse();
             }
         }
+
     }
 
     void RotateCannonTowardsMouse()
