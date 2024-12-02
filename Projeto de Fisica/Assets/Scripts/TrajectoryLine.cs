@@ -7,7 +7,6 @@ public class TrajectoryLine : MonoBehaviour
 {
     [SerializeField] private int _segmentCount = 10; // Quantidade de segmentos da linha
     private float _timeStep; // Intervalo de tempo entre os pontos
-    [SerializeField] private float gravity = 9.81f;  // Aceleração gravitacional
     private LineRenderer _lineRenderer;
 
     void Start()
@@ -17,7 +16,7 @@ public class TrajectoryLine : MonoBehaviour
         _timeStep = Time.deltaTime;
     }
 
-    public void UpdateTrajectory(Vector2 startPosition, Vector2 initialVelocity, float dragCoefficient, float mass)
+    public void UpdateTrajectory(Vector2 startPosition, Vector2 initialVelocity, float dragCoefficient, float mass, float gravity)
     {
         Vector2[] points = new Vector2[_segmentCount];
         Vector2 currentPosition = startPosition;

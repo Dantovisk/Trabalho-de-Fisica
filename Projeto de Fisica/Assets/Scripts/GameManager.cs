@@ -26,8 +26,14 @@ public class GameManager : MonoBehaviour
     {
         alvos++;
         printarAlvos();
-        if (alvos == alvosTotais)
+        if (alvos == alvosTotais && SceneManager.GetActiveScene().buildIndex != 2)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == 2 && alvos == alvosTotais)
+        {
+            Debug.Log("Você venceu!");
+            Time.timeScale = 0f;
+        }
+            
     }
 
     public void printarAlvos()

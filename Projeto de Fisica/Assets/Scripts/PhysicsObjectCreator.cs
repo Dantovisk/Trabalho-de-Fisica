@@ -13,6 +13,7 @@ public class PhysicsObjectManager : MonoBehaviour
     [SerializeField] private float defaultSpeed = 10f;              // Velocidade inicial padrão
     [SerializeField] private float defaultMass = 1f;                // Massa padrão
     [SerializeField] private float defaultDragCoefficient = 0.1f;  // Coeficiente de arrasto padrão
+    [SerializeField] private float gravidade = 9.81f;
 
     [Header("Object Settings")]
     [SerializeField] private GameObject physicsObjectPrefab; // Prefab do PhysicsObject
@@ -47,6 +48,7 @@ public class PhysicsObjectManager : MonoBehaviour
             float initialSpeed = float.Parse(initialSpeedInput.text);
             float mass = float.Parse(massInput.text);
             float dragCoefficient = float.Parse(dragCoefficientInput.text);
+            float gravity = gravidade;
 
             // Calcula o ângulo do canhão em radianos
             float angleDegrees = cannonController.GetCannonAngle();
@@ -59,7 +61,7 @@ public class PhysicsObjectManager : MonoBehaviour
             );
 
             // Atualiza a linha da trajetória
-            trajectoryLine.UpdateTrajectory(spawnPoint.position, initialVelocity, dragCoefficient, mass);
+            trajectoryLine.UpdateTrajectory(spawnPoint.position, initialVelocity, dragCoefficient, mass, gravity);
         }
     }
 
@@ -104,6 +106,7 @@ public class PhysicsObjectManager : MonoBehaviour
             physicsObject.initialVelocity = new Vector2(velocityX, velocityY);
             physicsObject.mass = mass;
             physicsObject.dragCoefficient = dragCoefficient;
+            physicsObject.gravidade = gravidade;
         }
     }
 }
