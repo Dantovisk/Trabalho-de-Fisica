@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class TrajectoryLine : MonoBehaviour
 {
-    [SerializeField] private int _segmentCount = 50; // Quantidade de segmentos da linha
-    [SerializeField] private float _timeStep = 0.1f; // Intervalo de tempo entre os pontos
+    [SerializeField] private int _segmentCount = 10; // Quantidade de segmentos da linha
+    private float _timeStep; // Intervalo de tempo entre os pontos
     [SerializeField] private float gravity = 9.81f;  // Aceleração gravitacional
     private LineRenderer _lineRenderer;
 
@@ -14,6 +14,7 @@ public class TrajectoryLine : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = _segmentCount;
+        _timeStep = Time.deltaTime;
     }
 
     public void UpdateTrajectory(Vector2 startPosition, Vector2 initialVelocity, float dragCoefficient, float mass)

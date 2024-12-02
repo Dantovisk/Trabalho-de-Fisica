@@ -5,9 +5,11 @@ using UnityEngine;
 public class colisao : MonoBehaviour
 {
     SpawnerManager spawner;
+    GameManager gameManager;
     private void Start()
     {
         spawner = FindObjectOfType<SpawnerManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +25,7 @@ public class colisao : MonoBehaviour
             Debug.Log("Colisão com alvo");
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            gameManager.aumentarAlvos();
             spawner.spawnarObjeto();
         }
     }
