@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -30,7 +29,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         if (SceneManager.GetActiveScene().buildIndex == 2 && alvos == alvosTotais)
         {
-            Debug.Log("Você venceu!");
+            Debug.Log("Vocï¿½ venceu!");
             Time.timeScale = 0f;
         }
             
