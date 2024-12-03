@@ -238,10 +238,11 @@ $$
 $$
 
 onde:
+$$
 - \( \Delta t \) é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
 - \( \vec{v}(t) \) é a velocidade conhecida no instante atual,
 - \( \vec{a}(t) \) é calculada com base nas forças atuantes no objeto.
-
+$$
 Essa abordagem permite uma atualização iterativa da velocidade em cada passo de tempo, sendo eficiente e suficientemente precisa para os objetivos do jogo.
 
 
