@@ -7,6 +7,7 @@ public class PhysicsObject : MonoBehaviour
 {
     public Vector2 initialVelocity { get; set; }
     public float mass { get; set; }
+    public float gravidade {  get; set; }
     public float dragCoefficient { get; set; } // Coeficiente de arrasto (k), utilizado para calcular a força viscosa
     public Vector2 velocity;       // Velocidade atual do objeto
     private ForceManager forceManager; 
@@ -20,7 +21,7 @@ public class PhysicsObject : MonoBehaviour
     void Update()
     {
         // Força gravitacional constante
-        forceManager.AddForce(new Force(Vector2.down, 9.81f * mass)); // Peso: F = m * g
+        forceManager.AddForce(new Force(Vector2.down, gravidade * mass)); // Peso: F = m * g
         
         // Cálculo da força viscosa, proporcional à velocidade
         Vector2 viscousForce = -dragCoefficient * velocity; // F = -k * v
