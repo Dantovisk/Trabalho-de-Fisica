@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
@@ -5,6 +6,7 @@ public class CannonController : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float minAngle = 0f;  // Ângulo mínimo permitido
     [SerializeField] private float maxAngle = 90f; // Ângulo máximo permitido
+    public TMP_Text textoAngulo;
 
     void Update()
     {
@@ -17,8 +19,10 @@ public class CannonController : MonoBehaviour
             {
                 // Se o canhão for clicado, rotaciona ele para a posição do mouse
                 RotateCannonTowardsMouse();
+                textoAngulo.text = "Ângulo: " + GetCannonAngle() + "º";
             }
         }
+
     }
 
     void RotateCannonTowardsMouse()
