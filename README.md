@@ -35,6 +35,7 @@ Para simplificar os cálculos, colocamos o lançamento no plano $$( YZ \)$$, ond
 - O eixo $$( Y \)$$ está sobre o solo e representa o movimento horizontal.
 
 A origem  
+
 $$
 \vec{r}(t) = 0
 $$ 
