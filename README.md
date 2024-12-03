@@ -230,9 +230,9 @@ Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajust
 - **Movimento de Projetéis**: Física 2D
 ## Referências
 
-1. **Notas de Aula** - dinamicav4.pdf
+1. **Notas de Aula** - dinamica-v4.pdf
 2. **Método de Euler** - Wikipedia
-3. **Unity Documentation**: [https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN]
+3. [**Unity Documentation](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
 
 
 ## Autores
