@@ -4,6 +4,7 @@
 
 Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento e o coeficiente de arrasto para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
 
+[Link para jogar:](https://pedr-lunkes.itch.io/as-aventuras-fisicas-de-magomerindo)
 ---
 
 ## Física Aplicada ao Jogo
