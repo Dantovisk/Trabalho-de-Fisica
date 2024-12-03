@@ -26,7 +26,7 @@ O jogo implementa a simulação física do **lançamento oblíquo**, baseada nas
 
 ![Movimento parabólico de um projétil em um lançamento oblíquo](img/lançamento.png)
 
-No lançamento oblíquo, consideramos um projétil de massa $$( m \)$$, lançado com uma velocidade inicial $$\vec{v}_0\$$, fazendo um ângulo $$( \theta \)$$ com o solo (eixo $$( Y \)$$). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade $$( \vec{F}_g \)$$, cuja força é vertical e dirigida para baixo.
+No lançamento oblíquo, consideramos um projétil de massa $$( m \)$$, lançado com uma velocidade inicial $$\(vec{v}_0\)$$, fazendo um ângulo $$( \theta \)$$ com o solo (eixo $$( Y \)$$). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade $$( \vec{F}_g \)$$, cuja força é vertical e dirigida para baixo.
 
 ### Sistema de Coordenadas
 
@@ -34,7 +34,7 @@ Para simplificar os cálculos, colocamos o lançamento no plano $$( YZ \)$$, ond
 - O eixo $$( Z \)$$ é perpendicular ao solo e representa o movimento vertical.
 - O eixo $$( Y \)$$ está sobre o solo e representa o movimento horizontal.
 
-A origem $$\vec{r}(t_i) = 0$$ é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
+A origem $$(\vec{r}(t_i) = 0)$$ é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
 
 ---
 
@@ -200,7 +200,7 @@ $$
 ## Alcance Máximo e Trajetória
 
 1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \)$$ (ou $$\( 45^\circ \))$$, onde a derivada do alcance em função de $$\( \theta \)$$ é zero.
-$
+
 2. A trajetória é uma parábola no plano $$\( YZ \)$$, conforme descrito pelas equações acima.
 
 ---
