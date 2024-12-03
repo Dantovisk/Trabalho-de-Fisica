@@ -24,9 +24,9 @@ Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de proj�
 
 O jogo implementa a simulação física do **lançamento oblíquo**, baseada nas leis clássicas da mecânica de Newton.
 
-<div align ="center">
-    <img src ="img/lançamento.png" style="max-width: 100%;" alt="movimento parabólico de um projétil em um lançamento oblíquo">
-</div> 
+<div align="center">
+    <img src="img/lançamento.png" style="max-width: 100%;" alt="movimento parabólico de um projétil em um lançamento oblíquo">
+</div>
 
 No lançamento oblíquo, consideramos um projétil de massa \( m \), lançado com uma velocidade inicial \( \vec{v}_0 \), fazendo um ângulo \( \theta \) com o solo (eixo \( Y \)). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade \( \vec{F}_g \), cuja força é vertical e dirigida para baixo.
 
