@@ -199,9 +199,9 @@ v_z(t) = v_0 \cdot \sin(\theta) - g \cdot t
 $$
 ## Alcance Máximo e Trajetória
 
-1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \) (ou \( 45^\circ \)), onde a derivada do alcance em função de \( \theta \) é zero.
-$$
-2. A trajetória é uma parábola no plano \( YZ \), conforme descrito pelas equações acima.
+1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \)$ (ou $$\( 45^\circ \))$$, onde a derivada do alcance em função de $$\( \theta \)$é$ zero.
+$
+2. A trajetória é uma parábola no plano $$\( YZ \)$$, conforme descrito pelas equações acima.
 
 ---
 
