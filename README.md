@@ -34,7 +34,7 @@ Para simplificar os cálculos, colocamos o lançamento no plano $$( YZ \)$$, ond
 - O eixo $$( Z \)$$ é perpendicular ao solo e representa o movimento vertical.
 - O eixo $$( Y \)$$ está sobre o solo e representa o movimento horizontal.
 
-A origem  $$\vec{r}_(t_i)$$ = 0 é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
+A origem  $$\vec{r_ti}$$ = 0 é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
 
 ---
 
