@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,35 +7,30 @@ public class MenuManager : MonoBehaviour
 {
     public LevelLoader levelLoader;
 
-    [Serializable] private GameObject principal;
-    [Serializable] private GameObject opcoes;
-    [Serializable] private GameObject level;
+    [SerializeField] private GameObject principal;
+    [SerializeField] private GameObject level;
 
-    void Jogar(){
-        principal.setActive(false);
-        opcoes.setActive(false);
-        level.setActive(true);
+	public void Start()
+	{
+		principal.SetActive(true);
+		level.SetActive(false);
+	}
+
+	public void Jogar(){
+        principal.SetActive(false);
+        level.SetActive(true);
     }
 
-    void Sair(){
+	public void Sair(){
         Application.Quit();
     }
 
-    void Opcoes(){
-        principal.setActive(false);
-        opcoes.setActive(true);
-        level.setActive(false);
+    public void Voltar(){
+        principal.SetActive(true);
+        level.SetActive(false);
     }
 
-    void Voltar(){
-        principal.setActive(true);
-        opcoes.setActive(false);
-        level.setActive(false);
-    }
-
-    void Level(int level){
+    public void Level(int level){
         levelLoader.LoadNextLevel(level);
     }
-
-
 }

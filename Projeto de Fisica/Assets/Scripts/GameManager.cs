@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public TMP_Text texto;
+
+    public LevelLoader levelLoader;
+	[SerializeField] public TMP_Text texto;
     public int alvos = 0;
     [SerializeField] public int alvosTotais;
     // Start is called before the first frame update
@@ -25,12 +27,12 @@ public class GameManager : MonoBehaviour
     {
         alvos++;
         printarAlvos();
-        if (alvos == alvosTotais && SceneManager.GetActiveScene().buildIndex != 2)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        if (SceneManager.GetActiveScene().buildIndex == 2 && alvos == alvosTotais)
+        if (alvos == alvosTotais && SceneManager.GetActiveScene().buildIndex != 3)
+            levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == 3 && alvos == alvosTotais)
         {
             Debug.Log("Voc� venceu!");
-            Time.timeScale = 0f;
+			levelLoader.LoadNextLevel(4);
         }
             
     }

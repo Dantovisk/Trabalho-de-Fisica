@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Jogo
+    uniqueID: 3738591083
+    locked: 0
+  - name: "Transi\xE7\xE3o"
+    uniqueID: 1846569861
+    locked: 0
