@@ -238,7 +238,7 @@ $$
 $$
 
 onde:
-- \( \Delta t \) é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
+- $$\Delta$$ t é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
 - \( \vec{v}(t) \) é a velocidade conhecida no instante atual,
 - \( \vec{a}(t) \) é calculada com base nas forças atuantes no objeto.
 
