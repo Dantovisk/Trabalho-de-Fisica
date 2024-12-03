@@ -24,9 +24,7 @@ Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de proj�
 
 O jogo implementa a simulação física do **lançamento oblíquo**, baseada nas leis clássicas da mecânica de Newton.
 
-<div align="center">
-    <img src="img/lançamento.png" style="max-width: 100%;" alt="movimento parabólico de um projétil em um lançamento oblíquo">
-</div>
+![Movimento parabólico de um projétil em um lançamento oblíquo](img/lançamento.png)
 
 No lançamento oblíquo, consideramos um projétil de massa \( m \), lançado com uma velocidade inicial \( \vec{v}_0 \), fazendo um ângulo \( \theta \) com o solo (eixo \( Y \)). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade \( \vec{F}_g \), cuja força é vertical e dirigida para baixo.
 
@@ -45,38 +43,47 @@ A origem (\( \vec{r}(t_i) = 0 \)) é definida como o ponto inicial do lançament
 No sistema \( YZ \), descrevemos os vetores posição, velocidade e aceleração do projétil da seguinte forma:
 
 1. **Gravidade**:
-   \[
-   \vec{F}_g = -mg\hat{k}, \quad g = 9,8 \, \text{m/s}^2
-   \]
+
+\[
+\vec{F}_g = -mg\hat{k}, \quad g = 9,8 \, \text{m/s}^2
+\]
 
 2. **Posição**:
-   \[
-   \vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}
-   \]
+
+\[
+\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}
+\]
 
 3. **Velocidade**:
-   \[
-   \vec{v}(t) = \dot{x}(t)\hat{i} + \dot{y}(t)\hat{j} + \dot{z}(t)\hat{k}
-   \]
+
+\[
+\vec{v}(t) = \dot{x}(t)\hat{i} + \dot{y}(t)\hat{j} + \dot{z}(t)\hat{k}
+\]
 
 4. **Aceleração**:
-   \[
-   \vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j} + \ddot{z}(t)\hat{k}
-   \]
+
+\[
+\vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j} + \ddot{z}(t)\hat{k}
+\]
 
 ---
 
 ### Segunda Lei de Newton
 
 Pela segunda lei de Newton, temos:
+
 \[
 \vec{F} = m \vec{a}
 \]
+
 Substituindo a gravidade como única força atuante:
+
 \[
 -mg\hat{k} = m \ddot{x}(t)\hat{i} + m \ddot{y}(t)\hat{j} + m \ddot{z}(t)\hat{k}
 \]
+
 Dividindo por \( m \) e comparando as componentes dos vetores:
+
 \[
 \ddot{x}(t) = 0, \quad \ddot{y}(t) = 0, \quad \ddot{z}(t) = -g
 \]
@@ -90,47 +97,59 @@ Essas equações diferenciais descrevem a aceleração em cada eixo.
 Resolvendo as EDOs para \( x(t) \), \( y(t) \) e \( z(t) \):
 
 1. Para \( x(t) \):
-   \[
-   \ddot{x}(t) = 0 \implies \dot{x}(t) = c_1 \implies x(t) = c_1 t + c_2
-   \]
-   Condições iniciais: \( x(0) = 0 \) e \( \dot{x}(0) = 0 \):
-   \[
-   c_1 = 0, \, c_2 = 0 \implies x(t) = 0
-   \]
+
+\[
+\ddot{x}(t) = 0 \implies \dot{x}(t) = c_1 \implies x(t) = c_1 t + c_2
+\]
+
+Condições iniciais: \( x(0) = 0 \) e \( \dot{x}(0) = 0 \):
+
+\[
+c_1 = 0, \, c_2 = 0 \implies x(t) = 0
+\]
 
 2. Para \( y(t) \):
-   \[
-   \ddot{y}(t) = 0 \implies \dot{y}(t) = c_3 \implies y(t) = c_3 t + c_4
-   \]
-   Condições iniciais: \( y(0) = 0 \) e \( \dot{y}(0) = v_0 \cos(\theta) \):
-   \[
-   c_3 = v_0 \cos(\theta), \, c_4 = 0 \implies y(t) = v_0 \cos(\theta) t
-   \]
+
+\[
+\ddot{y}(t) = 0 \implies \dot{y}(t) = c_3 \implies y(t) = c_3 t + c_4
+\]
+
+Condições iniciais: \( y(0) = 0 \) e \( \dot{y}(0) = v_0 \cos(\theta) \):
+
+\[
+c_3 = v_0 \cos(\theta), \, c_4 = 0 \implies y(t) = v_0 \cos(\theta) t
+\]
 
 3. Para \( z(t) \):
-   \[
-   \ddot{z}(t) = -g \implies \dot{z}(t) = -g t + c_5 \implies z(t) = -\frac{1}{2} g t^2 + c_5 t + c_6
-   \]
-   Condições iniciais: \( z(0) = 0 \) e \( \dot{z}(0) = v_0 \sin(\theta) \):
-   \[
-   c_5 = v_0 \sin(\theta), \, c_6 = 0 \implies z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-   \]
+
+\[
+\ddot{z}(t) = -g \implies \dot{z}(t) = -g t + c_5 \implies z(t) = -\frac{1}{2} g t^2 + c_5 t + c_6
+\]
+
+Condições iniciais: \( z(0) = 0 \) e \( \dot{z}(0) = v_0 \sin(\theta) \):
+
+\[
+c_5 = v_0 \sin(\theta), \, c_6 = 0 \implies z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+\]
 
 ---
 
 ### Fórmulas Finais
 
 As equações horárias que descrevem a posição são:
+
 \[
 x(t) = 0, \quad y(t) = v_0 \cos(\theta) t, \quad z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
 \]
 
 As componentes da velocidade:
+
 \[
 v_x(t) = 0, \quad v_y(t) = v_0 \cos(\theta), \quad v_z(t) = v_0 \sin(\theta) - g t
 \]
 
 Módulo da velocidade:
+
 \[
 |\vec{v}(t)| = \sqrt{v_y^2 + v_z^2} = \sqrt{v_0^2 - 2 v_0 \sin(\theta) g t + (g t)^2}
 \]
