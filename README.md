@@ -221,26 +221,26 @@ Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajust
 
 ---
 
-## Cálculo da Velocidade no Instante \( t \)
+## Cálculo da Velocidade no Instante $$\t$$
 
-Para calcular a velocidade do objeto no instante \( t \), utilizamos o **método de Euler**, uma técnica numérica para aproximar soluções de equações diferenciais ordinárias (EDOs). A equação diferencial que rege o movimento é:
+Para calcular a velocidade do objeto no instante $$\t$$, utilizamos o **método de Euler**, uma técnica numérica para aproximar soluções de equações diferenciais ordinárias (EDOs). A equação diferencial que rege o movimento é:
 
 $$
 \vec{a}(t) = \frac{d\vec{v}(t)}{dt},
 $$
 
-onde \( \vec{a}(t) \) é a aceleração no instante \( t \) e \( \vec{v}(t) \) é a velocidade.
+onde $$\vec{\a}(\t)$$ é a aceleração no instante $$\t$$ e $$\vec{\v}(\t)$$ é a velocidade.
 
-Aplicando o método de Euler, a velocidade no instante \( t + \Delta t \) é calculada como:
+Aplicando o método de Euler, a velocidade no instante $$\t + \Delta \t$$ é calculada como:
 
 $$
 \vec{v}(t + \Delta t) = \vec{v}(t) + \vec{a}(t) \cdot \Delta t,
 $$
 
 onde:
-- \( \Delta t \) é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
-- \( \vec{v}(t) \) é a velocidade conhecida no instante atual,
-- \( \vec{a}(t) \) é calculada com base nas forças atuantes no objeto.
+- $$\Delta t$$ é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
+- $$\vec{v}(t)$$ é a velocidade conhecida no instante atual,
+- $$\vec{a}(t)$$ é calculada com base nas forças atuantes no objeto.
 
 Essa abordagem permite uma atualização iterativa da velocidade em cada passo de tempo, sendo eficiente e suficientemente precisa para os objetivos do jogo.
 
