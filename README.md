@@ -26,7 +26,7 @@ O jogo implementa a simulação física do **lançamento oblíquo**, baseada nas
 
 ![Movimento parabólico de um projétil em um lançamento oblíquo](img/lançamento.png)
 
-No lançamento oblíquo, consideramos um projétil de massa \( m \), lançado com uma velocidade inicial \( \vec{v}_0 \), fazendo um ângulo \( \theta \) com o solo (eixo \( Y \)). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade \( \vec{F}_g \), cuja força é vertical e dirigida para baixo.
+No lançamento oblíquo, consideramos um projétil de massa $$( m \)$$, lançado com uma velocidade inicial \( \vec{v}_0 \), fazendo um ângulo \( \theta \) com o solo (eixo \( Y \)). A trajetória descrita pelo projétil é parabólica devido à influência da gravidade \( \vec{F}_g \), cuja força é vertical e dirigida para baixo.
 
 ### Sistema de Coordenadas
 
