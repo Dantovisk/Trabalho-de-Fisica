@@ -223,15 +223,15 @@ Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajust
 
 ## Cálculo da Velocidade no Instante \( t \)
 
-Para calcular a velocidade do objeto no instante $$\t, utilizamos o **método de Euler**, uma técnica numérica para aproximar soluções de equações diferenciais ordinárias (EDOs). A equação diferencial que rege o movimento é:
+Para calcular a velocidade do objeto no instante \( t \), utilizamos o **método de Euler**, uma técnica numérica para aproximar soluções de equações diferenciais ordinárias (EDOs). A equação diferencial que rege o movimento é:
 
 $$
 \vec{a}(t) = \frac{d\vec{v}(t)}{dt},
 $$
 
-onde \( \vec{a}(t) \) é a aceleração no instante \( t \) e \( \vec{v}(t) \) é a velocidade.
+onde \( \vec{a}(t) \) é a aceleração no instante \( t \) e $$\vec{v}$$ é a velocidade.
 
-Aplicando o método de Euler, a velocidade no instante \( t + \Delta t \) é calculada como:
+Aplicando o método de Euler, a velocidade no instante \( t + $$\Delta$$ t \) é calculada como:
 
 $$
 \vec{v}(t + \Delta t) = \vec{v}(t) + \vec{a}(t) \cdot \Delta t,
