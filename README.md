@@ -2,85 +2,106 @@
 
 ## Descrição
 
-Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento e o coeficiente de arrasto para alcançar um alvo. O jogo oferece fases com diferentes ambientes e diferentes propriedades físicas, tornando o jogo mais interessante.
+Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento e o coeficiente de arrasto para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
 
-## Funcionalidade
+---
 
-- **Massa do Projétil**: O jogador pode selecionar a massa do projétil. A massa influencia a aceleração e a trajetória do projétil, conforme descrito pelas leis de Newton.
-- **Velocidade Inicial**: O jogador pode ajustar a velocidade inicial do projétil. Essa velocidade define a direção e a magnitude do movimento do projétil.
-- **Coeficiente de Arrasto**: A resistência do ar (ou água) pode ser modificada, o que afeta o movimento do projétil devido à força de arrasto. O coeficiente de arrasto influencia a desaceleração do projétil ao longo do tempo.
+## Física Aplicada ao Jogo
 
-## Física do Jogo
+O jogo implementa a simulação física do **lançamento oblíquo**, baseada nas leis clássicas da mecânica de Newton.
 
-O jogo simula o lançamento oblíquo de um projétil, levando em consideração a física básica do movimento em um campo gravitacional, sem calcular a força de arrasto diretamente. A física utilizada é baseada nas equações clássicas de movimento:
+![Trajetória de Lançamento Oblíquo](img/lançamento.png) 
 
-### 1. Movimento Vertical
+Aqui estão os conceitos fundamentais aplicados:
 
-O movimento vertical do projétil é governado pela segunda lei de Newton, com a aceleração devido à gravidade $g$ (aproximadamente $9.81 \, m/s^2$ na Terra). A fórmula que descreve a posição vertical $y(t)$ ao longo do tempo $t$ é:
+### 1. Movimento no Campo Gravitacional
 
-$$
-y(t) = y_0 + v_{y0} \cdot t - \frac{1}{2} g t^2
-$$
+O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando o coeficiente de arrasto é desprezado. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
 
-Onde:
-- $y_0$ é a posição inicial vertical do projétil.
-- $v_{y0}$ é a componente vertical da velocidade inicial.
-- $g$ é a aceleração devida à gravidade.
-- $t$ é o tempo.
-
-A velocidade vertical do projétil é dada por:
+#### **Movimento Horizontal**
+A posição horizontal é descrita por:
 
 $$
-v_y(t) = v_{y0} - g t
+x(t) = v_0 \cdot \cos(\theta) \cdot t
 $$
 
-### 2. Movimento Horizontal
+- $v_0$: velocidade inicial.
+- $\theta$: ângulo de lançamento.
+- $t$: tempo.
 
-O movimento horizontal não sofre aceleração, pois não há forças externas atuando sobre o projétil (exceto o arrasto, que não é calculado diretamente aqui). A posição horizontal $x(t)$ ao longo do tempo é dada por:
+#### **Movimento Vertical**
+A posição vertical, que inclui o efeito da gravidade, é dada por:
 
 $$
-x(t) = x_0 + v_{x0} \cdot t
+y(t) = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} g t^2
 $$
 
-Onde:
-- $x_0$ é a posição inicial horizontal do projétil.
-- $v_{x0}$ é a componente horizontal da velocidade inicial.
-- $t$ é o tempo.
+- $g$: aceleração gravitacional ($9,81 \, m/s^2$ na Terra).
 
-### 3. Componentes da Velocidade Inicial
+A velocidade vertical muda com o tempo devido à gravidade:
 
-A velocidade inicial $v_0$ é decomposta em duas componentes:
-- Componente horizontal $v_{x0} = v_0 \cdot \cos(\theta)$
-- Componente vertical $v_{y0} = v_0 \cdot \sin(\theta)$
+$$
+v_y(t) = v_0 \cdot \sin(\theta) - g \cdot t
+$$
 
-Onde:
-- $v_0$ é a velocidade inicial.
-- $\theta$ é o ângulo de lançamento.
+### 2. Massa do Projétil
 
-### 4. Aceleração e Movimento por Quadro
-
-Em cada quadro (frame) do jogo, a aceleração do projétil é calculada levando em consideração a gravidade e a massa . A cada iteração, a velocidade é atualizada e a nova posição é calculada com base na velocidade do projétil.
-
-A aceleração é dada pela equação de movimento de Newton:
+No jogo, o jogador pode ajustar a massa do projétil, que afeta sua aceleração conforme a segunda lei de Newton:
 
 $$
 F = m \cdot a
 $$
 
-Onde $F$ é a força resultante (neste caso, apenas a gravidade) e $m$ é a massa do projétil. A aceleração $a$ é, portanto, a razão entre a força e a massa:
+Isso significa que projéteis mais leves podem ser lançados mais facilmente, mas são mais suscetíveis a forças externas (como arrasto), enquanto projéteis mais pesados mantêm sua inércia, mas têm trajetórias mais curtas devido à gravidade.
 
-$$
-a = \frac{F}{m}
-$$
+### 3. Coeficiente de Arrasto
 
-### 5. Simulação de Lançamento em Água
+Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajustar um parâmetro simplificado que simula a resistência do ar ou da água. Isso afeta a desaceleração do projétil e altera a sua trajetória, proporcionando um desafio adicional nas fases que incluem obstáculos como vento ou água.
 
-Em fases subaquáticas, a resistência do meio (água) é maior do que no ar. Embora o cálculo da força de arrasto não seja realizado diretamente no código, a física subaquática pode ser representada pela modificação do coeficiente de arrasto para refletir a maior viscosidade da água.
+---
 
+## Mecânicas de Jogabilidade
 
-## Tecnologias Usadas
+### **Parâmetros Ajustáveis**
 
-- Unity 2023.x
-- C#
-- Física 2D (Movimento de Projetéis)
+1. **Velocidade Inicial ($v_0$)**: Define a força aplicada ao projétil. Jogadores podem aumentar ou diminuir a velocidade inicial para ajustar a distância que o projétil percorre.
+   
+2. **Ângulo de Lançamento ($\theta$)**: Afeta diretamente a trajetória parabólica. Jogadores precisam encontrar o ângulo ideal para atingir o alvo com precisão.
 
+3. **Massa do Projétil ($m$)**: Jogadores podem experimentar com projéteis leves e pesados, ajustando sua estratégia conforme a inércia e a gravidade afetam a jogabilidade.
+
+4. **Ambiente (Ar ou Água)**: Em fases subaquáticas, o coeficiente de arrasto simula a resistência do meio. O projétil desacelera mais rapidamente, exigindo maior precisão nos ajustes iniciais.
+
+---
+
+## Estratégias Baseadas na Física
+
+Para dominar o jogo, os jogadores devem aplicar conceitos de física ao ajustar os parâmetros:
+
+1. **Máximo Alcance Horizontal**: Para alcançar o maior alcance possível, o ângulo de lançamento deve ser próximo de $45^\circ$, em ambientes sem arrasto.
+
+2. **Trajetória Precisa em Ambientes Resistivos**: Fases que incluem resistência do ar ou água exigem um lançamento mais direto, com ângulos menores ($<45^\circ$) para compensar a desaceleração.
+
+3. **Controle da Massa**: Em fases com obstáculos, usar projéteis mais pesados pode ajudar a manter uma trajetória mais estável, enquanto projéteis leves são ideais para atingir alvos em áreas de difícil acesso.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Engine**: Unity 2023.x.
+- **Linguagem**: C#.
+- **Movimento de Projetéis: Física 2D**
+
+## Autores
+
+| Nome                                |
+|:-----------------------------------:|
+| Dante Brito Lourenço                |
+| Frederico Scheffel Oliveira         |
+| João Gabriel Pieroli da Silva       |
+| Laura Fernandes Camargos            |
+| Leonardo Massuhiro Sato             |
+| Nicolas Amaral dos Santos           |
+| Pedro Henrique de Sousa Prestes     |
+| Pedro Henrique Perez Dias           |
+| Pedro Lunkes Villela                |
