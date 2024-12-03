@@ -92,7 +92,7 @@ Para dominar o jogo, os jogadores devem aplicar conceitos de física ao ajustar 
 
 - **Engine**: Unity 2023.x.
 - **Linguagem**: C#.
-- **Movimento de Projetéis: Física 2D**
+- **Movimento de Projetéis**: Física 2D
 
 ## Autores
 
