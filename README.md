@@ -229,7 +229,7 @@ $$
 \vec{a}(t) = \frac{d\vec{v}(t)}{dt},
 $$
 
-onde \( \vec{a}(t) \) é a aceleração no instante \( t \) e $$\vec{v}$$ é a velocidade.
+onde $$\vec{a}$$ é a aceleração no instante \( t \) e $$\vec{v}$$ é a velocidade.
 
 Aplicando o método de Euler, a velocidade no instante \( t + $$\Delta$$ t \) é calculada como:
 
