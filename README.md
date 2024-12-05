@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento e o coeficiente de arrasto para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
+Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
 
 [Link para jogar :)](https://pedr-lunkes.itch.io/as-aventuras-fisicas-de-magomerindo)
 ---
@@ -65,6 +65,14 @@ $$
 $$
 \vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j} + \ddot{z}(t)\hat{k}
 $$
+
+5. **Força Viscosa**:
+
+$$
+\vec{F}_v = -b\dot{z}\hat{k}, \text{m/s}^2
+$$
+
+Sendo $${b = 10^{-3}}$$  na água, $${b = 1.8^{-5}}$$ no ar, $${b = 1,975}$$ no mel, $${b = 0}$$ no espaço pela falta de atmosfera e foi pensado um valor de $${b = 12}$$ para o planeta criado para uma das fases
 
 ---
 
@@ -170,7 +178,7 @@ Para dominar o jogo, os jogadores devem aplicar conceitos de física ao ajustar 
 ---
 ## Movimento no Campo Gravitacional
 
-O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando o coeficiente de arrasto é desprezado. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
+O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando a força viscosa é desprezada. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
 
 #### **Movimento Horizontal**
 A posição horizontal é descrita por:
@@ -214,10 +222,7 @@ $$
 F = m \cdot a
 $$
 
-Isso significa que projéteis mais leves podem ser lançados mais facilmente, mas são mais suscetíveis a forças externas (como arrasto), enquanto projéteis mais pesados mantêm sua inércia, mas têm trajetórias mais curtas devido à gravidade.
-## Coeficiente de Arrasto
-
-Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajustar um parâmetro simplificado que simula a resistência do ar ou da água. Isso afeta a desaceleração do projétil e altera a sua trajetória, proporcionando um desafio adicional nas fases que incluem obstáculos como vento ou água.
+Isso significa que projéteis mais leves podem ser lançados mais facilmente, mas são mais suscetíveis a forças externas (como a força de viscosidade), enquanto projéteis mais pesados mantêm sua inércia, mas têm trajetórias mais curtas devido à gravidade.
 
 ---
 
@@ -255,7 +260,8 @@ Essa abordagem permite uma atualização iterativa da velocidade em cada passo d
 
 1. **Notas de Aula** - dinamica-v4.pdf
 2. **Método de Euler** - Wikipedia
-3. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
+3. [**Coeficientes de viscosidade**](https://edisciplinas.usp.br/pluginfile.php/8310622/mod_resource/content/1/Apostila%202_Viscosidade_2024.pdf#:~:text=Tipicamente%2C%20a%20%C3%A1gua%2C%20a%20temperatura,redor%20de%2030%20%C2%B0C.)
+4. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
 
 
 ## Autores
