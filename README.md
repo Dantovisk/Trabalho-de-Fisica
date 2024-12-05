@@ -110,7 +110,7 @@ $$
 \ddot{x}(t) = 0 \implies \dot{x}(t) = c_1 \implies x(t) = c_1 t + c_2
 $$
 
-Condições iniciais: \( x(0) = 0 \) e \( \dot{x}(0) = 0 \):
+Condições iniciais: $${ x(0) = 0 }$$ e $${ \dot{x}(0) = 0}$$:
 
 $$
 c_1 = 0, \, c_2 = 0 \implies x(t) = 0
@@ -122,7 +122,7 @@ $$
 \ddot{y}(t) = 0 \implies \dot{y}(t) = c_3 \implies y(t) = c_3 t + c_4
 $$
 
-Condições iniciais: \( y(0) = 0 \) e \( \dot{y}(0) = v_0 \cos(\theta) \):
+Condições iniciais: $${ y(0) = 0 }$$ e $${\dot{y}(0) = v_0 \cos(\theta)}$$:
 
 $$
 c_3 = v_0 \cos(\theta), \, c_4 = 0 \implies y(t) = v_0 \cos(\theta) t
@@ -134,7 +134,7 @@ $$
 \ddot{z}(t) = -g \implies \dot{z}(t) = -g t + c_5 \implies z(t) = -\frac{1}{2} g t^2 + c_5 t + c_6
 $$
 
-Condições iniciais: \( z(0) = 0 \) e \( \dot{z}(0) = v_0 \sin(\theta) \):
+Condições iniciais: $${ z(0) = 0 }$$ e $${\dot{z}(0) = v_0 \sin(\theta)}$$:
 
 $$
 c_5 = v_0 \sin(\theta), \, c_6 = 0 \implies z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
