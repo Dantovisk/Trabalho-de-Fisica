@@ -1998,6 +1998,7 @@ MonoBehaviour:
   minAngle: 0
   maxAngle: 90
   textoAngulo: {fileID: 899464704}
+  velocidadeAngulo: 1
 --- !u!61 &935413478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2567,6 +2568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 4927759677823594161, guid: 0a240612ab0998045bcf687f7a68c61d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123289261738575071, guid: 0a240612ab0998045bcf687f7a68c61d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2936,7 +2941,7 @@ MonoBehaviour:
   createButton: {fileID: 761236144}
   defaultSpeed: 10
   defaultMass: 1
-  defaultDragCoefficient: 1.6
+  defaultDragCoefficient: 1.1
   gravidade: 9.81
   physicsObjectPrefab: {fileID: 1557877427972908628, guid: eec11ccba0e1cd141ba3e3ee9cad0fe8, type: 3}
   cannonTransform: {fileID: 935413480}

@@ -312,6 +312,7 @@ MonoBehaviour:
   minAngle: 0
   maxAngle: 90
   textoAngulo: {fileID: 619635341}
+  velocidadeAngulo: 1
 --- !u!61 &65862843
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3376,6 +3377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 4927759677823594161, guid: 0a240612ab0998045bcf687f7a68c61d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123289261738575071, guid: 0a240612ab0998045bcf687f7a68c61d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4210,6 +4215,10 @@ PrefabInstance:
     - target: {fileID: 4545917883994245535, guid: 82ba03bd9d59d2a46afae8eea5412a94, type: 3}
       propertyPath: m_Name
       value: ReturnMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545917883994245535, guid: 82ba03bd9d59d2a46afae8eea5412a94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137514655729443716, guid: 82ba03bd9d59d2a46afae8eea5412a94, type: 3}
       propertyPath: levelLoader

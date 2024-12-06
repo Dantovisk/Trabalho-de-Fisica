@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// essa classe È respons·vel por administrar ar forÁas atuantes em um objeto,
+// essa classe √© respons√°vel por administrar ar for√ßas atuantes em um objeto,
 // e calcular sua resultante
 public class ForceManager
 {

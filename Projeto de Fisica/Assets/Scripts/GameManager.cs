@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Classe responsável por gerenciar a gameplay
 public class GameManager : MonoBehaviour
 {
-
+    
     public LevelLoader levelLoader;
 	[SerializeField] public TMP_Text texto;
     public int alvos = 0;
     [SerializeField] public int alvosTotais;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         printarAlvos();
@@ -23,16 +25,20 @@ public class GameManager : MonoBehaviour
         return alvos;
     }
 
+    // Função que atualiza a pontuação
     public void aumentarAlvos()
     {
         alvos++;
         printarAlvos();
-        if (alvos == alvosTotais && SceneManager.GetActiveScene().buildIndex != 3)
+
+        Debug.Log("Acertou um alvo!");
+
+        if (alvos == alvosTotais && SceneManager.GetActiveScene().buildIndex != 6)
             levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        if (SceneManager.GetActiveScene().buildIndex == 3 && alvos == alvosTotais)
+        if (SceneManager.GetActiveScene().buildIndex == 6 && alvos == alvosTotais)
         {
             Debug.Log("Voc� venceu!");
-			levelLoader.LoadNextLevel(4);
+			levelLoader.LoadNextLevel(7);
         }
             
     }
@@ -41,11 +47,4 @@ public class GameManager : MonoBehaviour
     {
         texto.text = "Alvos: " + alvos + "/" + alvosTotais;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }

@@ -7,18 +7,18 @@ public class PhysicsObjectManager : MonoBehaviour
     public TMP_InputField initialSpeedInput;     // Velocidade inicial (m/s)
     public TMP_InputField massInput;             // Massa (kg)
     public TMP_InputField dragCoefficientInput;  // Coeficiente de arrasto
-    public UnityEngine.UI.Button createButton;   // Botão para criar o objeto
+    public UnityEngine.UI.Button createButton;   // Botï¿½o para criar o objeto
 
     [Header("Default Values")]
-    [SerializeField] private float defaultSpeed = 10f;              // Velocidade inicial padrão
-    [SerializeField] private float defaultMass = 1f;                // Massa padrão
-    [SerializeField] private float defaultDragCoefficient = 0.1f;  // Coeficiente de arrasto padrão
+    [SerializeField] private float defaultSpeed = 10f;              // Velocidade inicial padrï¿½o
+    [SerializeField] private float defaultMass = 1f;                // Massa padrï¿½o
+    [SerializeField] private float defaultDragCoefficient = 0.1f;  // Coeficiente de arrasto padrï¿½o
     [SerializeField] private float gravidade = 9.81f;
 
     [Header("Object Settings")]
     [SerializeField] private GameObject physicsObjectPrefab; // Prefab do PhysicsObject
-    [SerializeField] private Transform cannonTransform;             // Referência ao canhão
-    [SerializeField] private CannonController cannonController;     // Referência ao script do canhão
+    [SerializeField] private Transform cannonTransform;             // Referï¿½ncia ao canhï¿½o
+    [SerializeField] private CannonController cannonController;     // Referï¿½ncia ao script do canhï¿½o
 
     [Header("Spawn Settings")]
     [SerializeField] private Transform spawnPoint; // Ponto inicial de spawn
@@ -28,15 +28,15 @@ public class PhysicsObjectManager : MonoBehaviour
 
     private void Start()
     {
-        // Inicializa os campos com valores padrão
+        // Inicializa os campos com valores padrï¿½o
         InitializeFields();
 
-        // Adiciona validações aos campos
+        // Adiciona validaï¿½ï¿½es aos campos
         initialSpeedInput.onEndEdit.AddListener((input) => ValidateAndSetDefault(input, initialSpeedInput, defaultSpeed, 0));
         massInput.onEndEdit.AddListener((input) => ValidateAndSetDefault(input, massInput, defaultMass, 0.01f));
         dragCoefficientInput.onEndEdit.AddListener((input) => ValidateAndSetDefault(input, dragCoefficientInput, defaultDragCoefficient, 0));
 
-        // Adiciona funcionalidade ao botão
+        // Adiciona funcionalidade ao botï¿½o
         createButton.onClick.AddListener(CreatePhysicsObject);
     }
 
@@ -44,13 +44,13 @@ public class PhysicsObjectManager : MonoBehaviour
     {
         if (trajectoryLine != null && spawnPoint != null)
         {
-            // Obtém os valores atuais da UI
+            // Obtï¿½m os valores atuais da UI
             float initialSpeed = float.Parse(initialSpeedInput.text);
             float mass = float.Parse(massInput.text);
             float dragCoefficient = float.Parse(dragCoefficientInput.text);
             float gravity = gravidade;
 
-            // Calcula o ângulo do canhão em radianos
+            // Calcula o ï¿½ngulo do canhï¿½o em radianos
             float angleDegrees = cannonController.GetCannonAngle();
             float angleRadians = Mathf.Deg2Rad * angleDegrees;
 
@@ -60,8 +60,13 @@ public class PhysicsObjectManager : MonoBehaviour
                 initialSpeed * Mathf.Sin(angleRadians)
             );
 
-            // Atualiza a linha da trajetória
+            // Atualiza a linha da trajetï¿½ria
             trajectoryLine.UpdateTrajectory(spawnPoint.position, initialVelocity, dragCoefficient, mass, gravity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CreatePhysicsObject();
         }
     }
 
@@ -88,7 +93,7 @@ public class PhysicsObjectManager : MonoBehaviour
         float mass = float.Parse(massInput.text);
         float dragCoefficient = float.Parse(dragCoefficientInput.text);
 
-        // Obtém o ângulo do canhão
+        // Obtï¿½m o ï¿½ngulo do canhï¿½o
         float angleDegrees = cannonController.GetCannonAngle();
         float angleRadians = Mathf.Deg2Rad * angleDegrees;
 
@@ -99,7 +104,7 @@ public class PhysicsObjectManager : MonoBehaviour
         // Instancia o prefab
         GameObject newObject = Instantiate(physicsObjectPrefab, spawnPoint.position, Quaternion.identity);
 
-        // Configura os parâmetros no PhysicsObject
+        // Configura os parï¿½metros no PhysicsObject
         PhysicsObject physicsObject = newObject.GetComponent<PhysicsObject>();
         if (physicsObject != null)
         {
