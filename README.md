@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento e o coeficiente de arrasto para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
+Este é um jogo desenvolvido na Unity que simula o lançamento oblíquo de projéteis, permitindo que o jogador ajuste parâmetros físicos como a massa do projétil, a velocidade de lançamento para alcançar um alvo. Cada fase apresenta desafios únicos, como diferentes ambientes (ar ou água) e propriedades físicas variadas, oferecendo um cenário dinâmico e envolvente para os jogadores.
 
 [Link para jogar :)](https://pedr-lunkes.itch.io/as-aventuras-fisicas-de-magomerindo)
 ---
@@ -34,7 +34,7 @@ Para simplificar os cálculos, colocamos o lançamento no plano $$( YZ \)$$, ond
 - O eixo $$( Z \)$$ é perpendicular ao solo e representa o movimento vertical.
 - O eixo $$( Y \)$$ está sobre o solo e representa o movimento horizontal.
 
-A origem  $$( \vec{r}(t) \) = 0 $$ é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
+A origem $$\vec{r_t}$$ é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
 
 ---
 
@@ -65,6 +65,14 @@ $$
 $$
 \vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j} + \ddot{z}(t)\hat{k}
 $$
+
+5. **Força Viscosa**:
+
+$$
+\vec{F}_v = -b\dot{z}\hat{k}, \text{m/s}^2
+$$
+
+Sendo $${b = 10^{-3}}$$  na água, $${b = 1.8^{-5}}$$ no ar, $${b = 1,975}$$ no mel, $${b = 0}$$ no espaço pela falta de atmosfera e foi pensado um valor de $${b = 12}$$ para o planeta criado para uma das fases
 
 ---
 
@@ -102,7 +110,7 @@ $$
 \ddot{x}(t) = 0 \implies \dot{x}(t) = c_1 \implies x(t) = c_1 t + c_2
 $$
 
-Condições iniciais: \( x(0) = 0 \) e \( \dot{x}(0) = 0 \):
+Condições iniciais: $${ x(0) = 0 }$$ e $${ \dot{x}(0) = 0}$$:
 
 $$
 c_1 = 0, \, c_2 = 0 \implies x(t) = 0
@@ -114,7 +122,7 @@ $$
 \ddot{y}(t) = 0 \implies \dot{y}(t) = c_3 \implies y(t) = c_3 t + c_4
 $$
 
-Condições iniciais: \( y(0) = 0 \) e \( \dot{y}(0) = v_0 \cos(\theta) \):
+Condições iniciais: $${ y(0) = 0 }$$ e $${\dot{y}(0) = v_0 \cos(\theta)}$$:
 
 $$
 c_3 = v_0 \cos(\theta), \, c_4 = 0 \implies y(t) = v_0 \cos(\theta) t
@@ -126,7 +134,7 @@ $$
 \ddot{z}(t) = -g \implies \dot{z}(t) = -g t + c_5 \implies z(t) = -\frac{1}{2} g t^2 + c_5 t + c_6
 $$
 
-Condições iniciais: \( z(0) = 0 \) e \( \dot{z}(0) = v_0 \sin(\theta) \):
+Condições iniciais: $${ z(0) = 0 }$$ e $${\dot{z}(0) = v_0 \sin(\theta)}$$:
 
 $$
 c_5 = v_0 \sin(\theta), \, c_6 = 0 \implies z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
@@ -170,7 +178,7 @@ Para dominar o jogo, os jogadores devem aplicar conceitos de física ao ajustar 
 ---
 ## Movimento no Campo Gravitacional
 
-O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando o coeficiente de arrasto é desprezado. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
+O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando a força viscosa é desprezada. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
 
 #### **Movimento Horizontal**
 A posição horizontal é descrita por:
@@ -214,14 +222,11 @@ $$
 F = m \cdot a
 $$
 
-Isso significa que projéteis mais leves podem ser lançados mais facilmente, mas são mais suscetíveis a forças externas (como arrasto), enquanto projéteis mais pesados mantêm sua inércia, mas têm trajetórias mais curtas devido à gravidade.
-## Coeficiente de Arrasto
-
-Embora o jogo não calcule explicitamente a força de arrasto, ele permite ajustar um parâmetro simplificado que simula a resistência do ar ou da água. Isso afeta a desaceleração do projétil e altera a sua trajetória, proporcionando um desafio adicional nas fases que incluem obstáculos como vento ou água.
+Isso significa que projéteis mais leves podem ser lançados mais facilmente, mas são mais suscetíveis a forças externas (como a força de viscosidade), enquanto projéteis mais pesados mantêm sua inércia, mas têm trajetórias mais curtas devido à gravidade.
 
 ---
 
-# Cálculo da Velocidade no Instante \( t \)
+## Cálculo da Velocidade no Instante \( t \)
 
 Para calcular a velocidade do objeto no instante \( t \), utilizamos o **método de Euler**, uma técnica numérica para aproximar soluções de equações diferenciais ordinárias (EDOs). A equação diferencial que rege o movimento é:
 
@@ -229,20 +234,21 @@ $$
 \vec{a}(t) = \frac{d\vec{v}(t)}{dt},
 $$
 
-onde $$\vec{a}(t)$$ é a aceleração no instante $$( t \)$$ e $$( \vec{v}(t) \)$$ é a velocidade.
+onde $$\vec{a                                                                                                                                                                                                                                                                                           }$$ é a aceleração no instante \( t \) e $$\vec{v}$$ é a velocidade.
 
-Aplicando o método de Euler, a velocidade no instante $$( t + \Delta t \)$$ é calculada como:
+Aplicando o método de Euler, a velocidade no instante \( t + $$\Delta$$ t \) é calculada como:
 
 $$
 \vec{v}(t + \Delta t) = \vec{v}(t) + \vec{a}(t) \cdot \Delta t,
 $$
 
 onde:
-- $$( \Delta t \)$$ é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
-- $$( \vec{v}(t) \)$$ é a velocidade conhecida no instante atual,
-- $$( \vec{a}(t) \)$$ é calculada com base nas forças atuantes no objeto.
-
+- $$\Delta$$ t é o intervalo de tempo entre as iterações (DeltaTime no Unity, que mede o tempo entre os frames renderizados),
+- $$\vec{v}$$ é a velocidade conhecida no instante atual,
+- $$\vec{a}$$ é calculada com base nas forças atuantes no objeto.
 Essa abordagem permite uma atualização iterativa da velocidade em cada passo de tempo, sendo eficiente e suficientemente precisa para os objetivos do jogo.
+
+
 
 
 ## Tecnologias Utilizadas
@@ -254,7 +260,8 @@ Essa abordagem permite uma atualização iterativa da velocidade em cada passo d
 
 1. **Notas de Aula** - dinamica-v4.pdf
 2. **Método de Euler** - Wikipedia
-3. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
+3. [**Coeficientes de viscosidade**](https://edisciplinas.usp.br/pluginfile.php/8310622/mod_resource/content/1/Apostila%202_Viscosidade_2024.pdf#:~:text=Tipicamente%2C%20a%20%C3%A1gua%2C%20a%20temperatura,redor%20de%2030%20%C2%B0C.)
+4. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
 
 
 ## Autores
