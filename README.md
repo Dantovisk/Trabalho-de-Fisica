@@ -150,7 +150,7 @@ $$
 A solução para $${ v_y(t) }$$ pode ser obtida considerando a solução homogênea (decadência exponencial) e uma solução particular para o termo constante $${ -mg }$$. A solução geral para $${ v_y(t) }$$ é:
 
 $$
-v_y(t) = \left( v_{0y} + \frac{mg}{\eta} \right) e^{-\frac{\eta}{m}t} - \frac{mg}{\eta}
+v_y(t) = \left( v_{y0} + \frac{mg}{\eta} \right) e^{-\frac{\eta}{m}t} - \frac{mg}{\eta}
 $$
 
 Onde $${ v_{y0} = v_0 \sin(\theta_0) }$$ é a velocidade inicial na direção $${ y }$$.
@@ -184,8 +184,10 @@ $$
 Substituindo $${ v_y(t) }$$ pela expressão encontrada anteriormente:
 
 $$
-y(t) = \left( v_{0y} + \frac{mg}{\eta} \right) \frac{m}{\eta} \left( 1 - e^{-\frac{\eta}{m}t} \right) - \frac{mg}{\eta} \left( t - \frac{m}{\eta} \left( 1 - e^{-\frac{\eta}{m}t} \right) \right)
+y(t) = -\frac{m \left(\left(v_{y0}{\eta} + gm\right) \mathrm{e}^{-\frac{{\eta}t}{m}} + g{\eta}t\right)}{{\eta}^{2}}
 $$
+
+Sendo $$\eta$$ diferente de 0.
 
 ### 4. Condições Iniciais
 
@@ -221,7 +223,7 @@ $$
 - **Posição na direção $${ y }$$**:
 
 $$
-y(t) = \frac{m}{\eta} v_0 \sin(\theta_0) \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right) - \frac{mg}{\eta} t
+y(t) = -\frac{m \left(\left(v_0 \sin(\theta_0){\eta} + gm\right) \mathrm{e}^{-\frac{{\eta}t}{m}} + g{\eta}t\right)}{{\eta}^{2}}
 $$
 
 ---
@@ -237,35 +239,7 @@ Para dominar o jogo, os jogadores devem aplicar conceitos de física ao ajustar 
 3. **Controle da Massa**: Em fases com obstáculos, usar projéteis mais pesados pode ajudar a manter uma trajetória mais estável, enquanto projéteis leves são ideais para atingir alvos em áreas de difícil acesso.
 
 ---
-## Movimento no Campo Gravitacional
 
-O movimento do projétil é regido pela gravidade e segue uma trajetória parabólica quando a força viscosa é desprezada. As equações clássicas são implementadas para calcular a posição e a velocidade do projétil em tempo real:
-
-#### **Movimento Horizontal**
-A posição horizontal é descrita por:
-
-$$
-z(t) = v_0 \cdot \cos(\theta) \cdot t
-$$
-
-- $v_0$: velocidade inicial.
-- $\theta$: ângulo de lançamento.
-- $t$: tempo.
-
-#### **Movimento Vertical**
-A posição vertical, que inclui o efeito da gravidade, é dada por:
-
-$$
-z(t) = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} g t^2
-$$
-
-- $g$: aceleração gravitacional ($9,81 \, m/s^2$ na Terra).
-
-A velocidade vertical muda com o tempo devido à gravidade:
-
-$$
-v_z(t) = v_0 \cdot \sin(\theta) - g \cdot t
-$$
 ## Alcance Máximo e Trajetória
 
 1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \)$$ (ou $${ 45^\circ })$$, onde a derivada do alcance em função de $${ \theta }$$ é zero.
