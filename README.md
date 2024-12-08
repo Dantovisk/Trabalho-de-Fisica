@@ -226,6 +226,14 @@ $$
 y(t) = -\frac{m \left(\left(v_0 \sin(\theta_0){\eta} + gm\right) \mathrm{e}^{-\frac{{\eta}t}{m}} + g{\eta}t\right)}{{\eta}^{2}}
 $$
 
+## Aplicação no código
+
+As EDOs desenvolvidas acima são utilizadas para prever a trajetória desenvolvida pelo projétil lançado. Durante o desenvolvimento, a aplicação deu-se conforme apresentado abaixo:
+
+![Foto](img/codigoForca.jpeg)
+
+Esse cálculo é atualizado a cada frame do jogo, com os valores de velocidade, para depois atualizar a posição.
+
 ---
 
 ## Estratégias Baseadas na Física
