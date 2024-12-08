@@ -150,7 +150,7 @@ $$
 A solução para $${ v_y(t) }$$ pode ser obtida considerando a solução homogênea (decadência exponencial) e uma solução particular para o termo constante $${ -mg }$$. A solução geral para $${ v_y(t) }$$ é:
 
 $$
-v_y(t) = v_{y0} \exp\left(-\frac{\eta}{m} t\right) - \frac{mg}{\eta}
+v_y(t) = \left( v_{0y} + \frac{mg}{\eta} \right) e^{-\frac{\eta}{m}t} - \frac{mg}{\eta}
 $$
 
 Onde $${ v_{y0} = v_0 \sin(\theta_0) }$$ é a velocidade inicial na direção $${ y }$$.
@@ -178,13 +178,13 @@ $$
 A posição $${ y(t) }$$ é dada pela integral de $${ v_y(t) }$$:
 
 $$
-y(t) = \int v_y(t) dt = \int \left[ v_{y0} \exp\left(-\frac{\eta}{m} t\right) - \frac{mg}{\eta} \right] dt
+y(t) = \int_0^t v_y(t) \, dt
 $$
 
-A solução para $${ y(t) }$$ é:
+Substituindo $${ v_y(t) }$$ pela expressão encontrada anteriormente:
 
 $$
-y(t) = \frac{m}{\eta} v_{y0} \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right) - \frac{mg}{\eta} t
+y(t) = \left( v_{0y} + \frac{mg}{\eta} \right) \frac{m}{\eta} \left( 1 - e^{-\frac{\eta}{m}t} \right) - \frac{mg}{\eta} \left( t - \frac{m}{\eta} \left( 1 - e^{-\frac{\eta}{m}t} \right) \right)
 $$
 
 ### 4. Condições Iniciais
