@@ -31,8 +31,8 @@ No lançamento oblíquo, consideramos um projétil de massa $$( m \)$$, lançado
 ### Sistema de Coordenadas
 
 Para simplificar os cálculos, colocamos o lançamento no plano $$( YZ \)$$, onde:
-- O eixo $$( Z \)$$ é perpendicular ao solo e representa o movimento vertical.
-- O eixo $$( Y \)$$ está sobre o solo e representa o movimento horizontal.
+- O eixo $$( Y \)$$ é perpendicular ao solo e representa o movimento vertical.
+- O eixo $$( X \)$$ está sobre o solo e representa o movimento horizontal.
 
 A origem $$\vec{r_t}$$ é definida como o ponto inicial do lançamento, com $$( t_i = 0 \)$$.
 
@@ -40,130 +40,191 @@ A origem $$\vec{r_t}$$ é definida como o ponto inicial do lançamento, com $$( 
 
 ### Vetores em Coordenadas
 
-No sistema $$( YZ \)$$, descrevemos os vetores posição, velocidade e aceleração do projétil da seguinte forma:
+Neste projeto, trabalhamos com o sistema $$( XY \)$$, por se tratar de um jogo em 2D. descrevemos os vetores posição, velocidade e aceleração do projétil da seguinte forma:
 
 1. **Gravidade**:
 
 $$
-\vec{F}_g = -mg\hat{k}, \quad g = 9,8 \, \text{m/s}^2
+\vec{F}_g = -mg\hat{k}, \text{m/s}^2
 $$
+
+Sendo $${g = 9,8}$$ para as fases na Terra, aproximadamente $${g = 1,6}$$ para a fase na Lua, $${g = 0,1}$$ para o planeta criado para a fase 5 e $${g = 25,6}$$ para o planeta criado para a fase 6.
 
 2. **Posição**:
 
 $$
-\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}
+\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j}
 $$
 
 3. **Velocidade**:
 
 $$
-\vec{v}(t) = \dot{x}(t)\hat{i} + \dot{y}(t)\hat{j} + \dot{z}(t)\hat{k}
+\vec{v}(t) = \dot{x}(t)\hat{i} + \dot{y}(t)\hat{j}
 $$
 
 4. **Aceleração**:
 
 $$
-\vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j} + \ddot{z}(t)\hat{k}
+\vec{a}(t) = \ddot{x}(t)\hat{i} + \ddot{y}(t)\hat{j}
 $$
 
 5. **Força Viscosa**:
 
+Para cálculo da força viscosa, tomamos de base a Lei de Stokes:
+
 $$
-\vec{F}_v = -b\dot{z}\hat{k}, \text{m/s}^2
+\vec{F}_v = 6 \pi \eta \vec{v} r, \text{m/s}^2
 $$
 
-Sendo $${b = 10^{-3}}$$  na água, $${b = 1.8^{-5}}$$ no ar, $${b = 1,975}$$ no mel, $${b = 0}$$ no espaço pela falta de atmosfera e foi pensado um valor de $${b = 12}$$ para o planeta criado para uma das fases
+Com $$\eta$$ sendo o coeficiente de viscosidade dinâmica do meio, $$v$$ sendo a velocidade do objeto e $$r$$ o raio do objeto esférico (usado como base para o nosso projétil). Para efeito de simplificação de cálculo, consideramos o nosso $$r = 1 / (6 \pi)$$. Dessa forma, o cálculo da força viscosa se dá como:
+
+$$
+\vec{F}_v = \eta \vec{v} , \text{m/s}^2
+$$
+
+Assumimos os valores de $${\eta = 10^{-3}}$$ para a fase da água, $${\eta = 1,8^{-5}}$$ para a do ar, $${\eta = 1,975}$$ para a do mel, $${\eta = 0}$$ para a do espaço pela falta de atmosfera e foi pensado um valor de $${\eta = 6,34}$$ para o planeta criado para a fase 5 e $${\eta = 12,69}$$ para a fase 6.
 
 ---
 
-### Segunda Lei de Newton
+## Movimento de Lançamento Oblíquo com Força Viscosa
 
-Pela segunda lei de Newton, temos:
+Este documento descreve o passo a passo para resolver as equações de movimento de um objeto em lançamento oblíquo, levando em consideração a força viscosa, proporcional à $${ \eta v }$$.
+
+### 1. Descrição do Sistema
+
+Considere um objeto sendo lançado com uma velocidade inicial $${ v_0 }$$ e um ângulo de lançamento $${ \theta_0 }$$ em um fluido viscoso. As forças que atuam sobre o objeto são:
+
+- **Força de gravidade** $${ F_g = mg }$$ (para baixo, na direção $${ y }$$).
+- **Força viscosa** $${ F_{v} = \eta v }$$, onde $${ v }$$ é a velocidade do objeto, e $${ \eta }$$ é a viscosidade do fluido.
+
+#### 1.1. Equações de Movimento
+
+As equações de movimento nas direções $${ x }$$ (horizontal) e $${ y }$$ (vertical) são:
+
+- **Direção $${ x }$$ (horizontal)**:
 
 $$
-\vec{F} = m \vec{a}
+m \frac{d^2 x}{dt^2} = -\eta \frac{dx}{dt}
 $$
 
-Substituindo a gravidade como única força atuante:
+  Onde $${ \frac{dx}{dt} = v_x }$$ é a velocidade na direção $${ x }$$.
+
+- **Direção $${ y }$$ (vertical)**:
 
 $$
--mg\hat{k} = m \ddot{x}(t)\hat{i} + m \ddot{y}(t)\hat{j} + m \ddot{z}(t)\hat{k}
+m \frac{d^2 y}{dt^2} = -mg - \eta \frac{dy}{dt}
 $$
 
-Dividindo por \( m \) e comparando as componentes dos vetores:
+  Onde $${ \frac{dy}{dt} = v_y }$$ é a velocidade na direção $${ y }$$, e $${ -mg }$$ representa a força de gravidade.
+
+### 2. Soluções para a Velocidade
+
+As equações de movimento podem ser resolvidas para as velocidades $${ v_x(t) }$$ e $${ v_y(t) }$$, integrando as equações diferenciais.
+
+#### 2.1. Solução para $${ v_x(t) }$$
+
+A equação para a velocidade $${ v_x }$$ é dada por:
 
 $$
-\ddot{x}(t) = 0, \quad \ddot{y}(t) = 0, \quad \ddot{z}(t) = -g
+m \frac{d v_x}{dt} = -\eta v_x
 $$
 
-Essas equações diferenciais descrevem a aceleração em cada eixo.
+Ou seja, a aceleração na direção $${ x }$$ é proporcional à velocidade $${ v_x }$$.
+
+A solução para $${ v_x(t) }$$ é:
+
+$$
+v_x(t) = v_{x0} \exp\left(-\frac{\eta}{m} t\right)
+$$
+
+Onde $${ v_{x0} = v_0 \cos(\theta_0) }$$ é a velocidade inicial na direção $${ x }$$.
+
+#### 2.2. Solução para $${ v_y(t) }$$
+
+A equação para a velocidade $${ v_y }$$ é dada por:
+
+$$
+m \frac{d v_y}{dt} = -mg - \eta v_y
+$$
+
+A solução para $${ v_y(t) }$$ pode ser obtida considerando a solução homogênea (decadência exponencial) e uma solução particular para o termo constante $${ -mg }$$. A solução geral para $${ v_y(t) }$$ é:
+
+$$
+v_y(t) = v_{y0} \exp\left(-\frac{\eta}{m} t\right) - \frac{mg}{\eta}
+$$
+
+Onde $${ v_{y0} = v_0 \sin(\theta_0) }$$ é a velocidade inicial na direção $${ y }$$.
+
+### 3. Soluções para a Posição
+
+Agora, para encontrar a posição $${ x(t) }$$ e $${ y(t) }$$, integramos as soluções para $${ v_x(t) }$$ e $${ v_y(t) }$$.
+
+#### 3.1. Posição na direção $${ x }$$
+
+A posição $${ x(t) }$$ é dada pela integral de $${ v_x(t) }$$:
+
+$$
+x(t) = \int v_x(t) dt = \int v_{x0} \exp\left(-\frac{\eta}{m} t\right) dt
+$$
+
+A solução para $${ x(t) }$$ é:
+
+$$
+x(t) = \frac{m}{\eta} v_{x0} \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right)
+$$
+
+#### 3.2. Posição na direção $${ y }$$
+
+A posição $${ y(t) }$$ é dada pela integral de $${ v_y(t) }$$:
+
+$$
+y(t) = \int v_y(t) dt = \int \left[ v_{y0} \exp\left(-\frac{\eta}{m} t\right) - \frac{mg}{\eta} \right] dt
+$$
+
+A solução para $${ y(t) }$$ é:
+
+$$
+y(t) = \frac{m}{\eta} v_{y0} \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right) - \frac{mg}{\eta} t
+$$
+
+### 4. Condições Iniciais
+
+As condições iniciais são definidas no momento $${ t = 0 }$$:
+
+- Posição inicial: $${ x(0) = 0 }$$ e $${ y(0) = 0 }$$
+- Velocidade inicial: $${ v_x(0) = v_0 \cos(\theta_0) }$$ e $${ v_y(0) = v_0 \sin(\theta_0) }$$
+
+Estas condições determinam as constantes $${ v_{x0} = v_0 \cos(\theta_0) }$$ e $${ v_{y0} = v_0 \sin(\theta_0) }$$, usadas nas soluções das equações de movimento.
+
+### 5. Resultados Finais
+
+As soluções para as velocidades e posições nas direções $${ x }$$ e $${ y }$$ são:
+
+- **Velocidade na direção $${ x }$$**:
+
+$$
+v_x(t) = v_0 \cos(\theta_0) \exp\left(-\frac{\eta}{m} t\right)
+$$
+
+- **Posição na direção $${ x }$$**:
+
+$$
+x(t) = \frac{m}{\eta} v_0 \cos(\theta_0) \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right)
+$$
+
+- **Velocidade na direção $${ y }$$**:
+
+$$
+v_y(t) = v_0 \sin(\theta_0) \exp\left(-\frac{\eta}{m} t\right) - \frac{mg}{\eta}
+$$
+
+- **Posição na direção $${ y }$$**:
+
+$$
+y(t) = \frac{m}{\eta} v_0 \sin(\theta_0) \left( 1 - \exp\left(-\frac{\eta}{m} t\right) \right) - \frac{mg}{\eta} t
+$$
 
 ---
-
-### Solução das EDOs
-
-Resolvendo as EDOs para \( x(t) \), \( y(t) \) e \( z(t) \):
-
-1. Para \( x(t) \):
-
-$$
-\ddot{x}(t) = 0 \implies \dot{x}(t) = c_1 \implies x(t) = c_1 t + c_2
-$$
-
-Condições iniciais: $${ x(0) = 0 }$$ e $${ \dot{x}(0) = 0}$$:
-
-$$
-c_1 = 0, \, c_2 = 0 \implies x(t) = 0
-$$
-
-2. Para \( y(t) \):
-
-$$
-\ddot{y}(t) = 0 \implies \dot{y}(t) = c_3 \implies y(t) = c_3 t + c_4
-$$
-
-Condições iniciais: $${ y(0) = 0 }$$ e $${\dot{y}(0) = v_0 \cos(\theta)}$$:
-
-$$
-c_3 = v_0 \cos(\theta), \, c_4 = 0 \implies y(t) = v_0 \cos(\theta) t
-$$
-
-3. Para \( z(t) \):
-
-$$
-\ddot{z}(t) = -g \implies \dot{z}(t) = -g t + c_5 \implies z(t) = -\frac{1}{2} g t^2 + c_5 t + c_6
-$$
-
-Condições iniciais: $${ z(0) = 0 }$$ e $${\dot{z}(0) = v_0 \sin(\theta)}$$:
-
-$$
-c_5 = v_0 \sin(\theta), \, c_6 = 0 \implies z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-$$
-
----
-
-### Equações Finais
-
-As equações horárias que descrevem a posição são:
-
-$$
-x(t) = 0, \quad y(t) = v_0 \cos(\theta) t, \quad z(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-$$
-
-As componentes da velocidade:
-
-$$
-v_x(t) = 0, \quad v_y(t) = v_0 \cos(\theta), \quad v_z(t) = v_0 \sin(\theta) - g t
-$$
-
-Módulo da velocidade:
-
-$$
-|\vec{v}(t)| = \sqrt{v_y^2 + v_z^2} = \sqrt{v_0^2 - 2 v_0 \sin(\theta) g t + (g t)^2}
-$$
-
----
-
 
 ## Estratégias Baseadas na Física
 
@@ -207,9 +268,9 @@ v_z(t) = v_0 \cdot \sin(\theta) - g \cdot t
 $$
 ## Alcance Máximo e Trajetória
 
-1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \)$$ (ou $$\( 45^\circ \))$$, onde a derivada do alcance em função de $$\( \theta \)$$ é zero.
+1. O alcance máximo ocorre para $$( \theta = \frac{\pi}{4} \)$$ (ou $${ 45^\circ })$$, onde a derivada do alcance em função de $${ \theta }$$ é zero.
 
-2. A trajetória é uma parábola no plano $$\( YZ \)$$, conforme descrito pelas equações acima.
+2. A trajetória é uma parábola no plano $$\( XY \)$$, conforme descrito pelas equações acima.
 
 ---
 
@@ -260,8 +321,9 @@ Essa abordagem permite uma atualização iterativa da velocidade em cada passo d
 
 1. **Notas de Aula** - dinamica-v4.pdf
 2. **Método de Euler** - Wikipedia
-3. [**Coeficientes de viscosidade**](https://edisciplinas.usp.br/pluginfile.php/8310622/mod_resource/content/1/Apostila%202_Viscosidade_2024.pdf#:~:text=Tipicamente%2C%20a%20%C3%A1gua%2C%20a%20temperatura,redor%20de%2030%20%C2%B0C.)
-4. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
+3. [**Viscosidade**](https://edisciplinas.usp.br/pluginfile.php/8310622/mod_resource/content/1/Apostila%202_Viscosidade_2024.pdf#:~:text=Tipicamente%2C%20a%20%C3%A1gua%2C%20a%20temperatura,redor%20de%2030%20%C2%B0C.)
+4. [**Coeficientes de Viscosidade**](http://www.escoladavida.eng.br/mecfluquimica/planejamento_12009/mecflu1.pdf)
+5. [**Unity Documentation**](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.unity.com/&ved=2ahUKEwjP8-a914uKAxUeqZUCHS1oBuwQFnoECA0QAQ&usg=AOvVaw1tl3GibVO-rZ_iA7vfnovN)
 
 
 ## Autores
